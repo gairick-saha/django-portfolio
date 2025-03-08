@@ -1,0 +1,89 @@
+.select-btn {
+    position: relative;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.select-btn:hover {
+    border-color: #999;
+}
+
+.dropdown-options {
+    max-height: 200px;
+    overflow-y: auto;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+}
+
+form .module ul {
+    margin-left: 0px;
+    padding-left: 0px;
+}
+
+.module p, .module ul, .module h3, .module h4, .module dl, .module pre {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.searchable-dropdown-content {
+    margin-top: 1px;
+    padding: 20px;
+    padding-left: 10px;
+    padding-top: 0px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    display: none;
+}
+
+.searchable-dropdown-content .search {
+    position: relative;
+    margin-top: 10px;
+}
+
+.search input {
+    width: 100%;
+    outline: none;
+}
+
+.searchable-dropdown-content .dropdown-options {
+    margin-top: 10px;
+    padding: 0;
+    background: #fff;
+    max-height: 200px;
+
+}
+
+.dropdown-options li {
+    align-items: center;
+    justify-content: start;
+    padding: 8px;
+    border-radius: 8px;
+    display: flex;
+}
+
+.dropdown-item i {
+    font-size: 50px;
+}
+
+.dropdown-item p {
+    font-size: 14px;
+}
+
+.dropdown-options li:hover {
+    background: var(--darkened-bg);
+}
+
+.dropdown-options li.highlighted {
+    background: var(--darkened-bg);
+}
+
+.dropdown-options li.selected {
+    background: #f0f0f0;
+}

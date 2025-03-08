@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Gairick Saha - Flutter Developer</title>
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <link rel="stylesheet" type="text/css"
+            href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+        <style>
+        :root {
+            --primary-color: #4F46E5;
+            --secondary-color: #7B68EE;
+            --accent-color: #EC4899;
+            --text-dark: #1F2937;
+            --text-light: #F9FAFB;
+            --bg-light: #F9FAFB;
+            --bg-dark: #111827;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .cta-button {
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: transform 0.3s;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .hero-text {
+            flex: 1;
+        }
+        
+        .hello-text {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .name-text {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .title-text {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .hero-description {
+            font-size: 1.1rem;
+            color: #6B7280;
+            margin-bottom: 30px;
+            max-width: 600px;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .secondary-button {
+            background-color: transparent;
+            color: var(--primary-color);
+            padding: 10px 20px;
+            border-radius: 50px;
+            border: 2px solid var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .secondary-button:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .hero-image {
+            flex: 1;
+            position: relative;
+        }
+        
+        .profile-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .shape-1, .shape-2, .shape-3 {
+            position: absolute;
+            z-index: 1;
+        }
+        
+        .shape-1 {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(45deg, var(--primary-color), transparent);
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            top: -30px;
+            right: 50px;
+            animation: morph 8s ease-in-out infinite;
+        }
+        
+        .shape-2 {
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(45deg, var(--accent-color), transparent);
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            bottom: 0;
+            left: 60px;
+            animation: morph 8s ease-in-out infinite 2s;
+        }
+        
+        .shape-3 {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(45deg, var(--secondary-color), transparent);
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            top: 50px;
+            left: 0;
+            animation: morph 8s ease-in-out infinite 4s;
+        }
+        
+        @keyframes morph {
+            0% {
+                border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            }
+            50% {
+                border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            }
+            100% {
+                border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            }
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 100px 0;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+        
+        .service-subtitle {
+            text-align: center;
+            margin-bottom: 50px;
+            color: #6B7280;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background-color: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .service-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .service-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .service-description {
+            color: #6B7280;
+        }
+        
+        /* Projects Section */
+        .projects {
+            padding: 100px 0;
+            background-color: #F3F4F6;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .project-card {
+            background-color: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .project-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .project-content {
+            padding: 20px;
+        }
+        
+        .project-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .project-description {
+            color: #6B7280;
+            margin-bottom: 15px;
+        }
+        
+        .project-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        
+        /* Stats Section */
+        .stats {
+            padding: 80px 0;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            color: white;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+        
+        .stat-item h3 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .stat-item p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 100px 0;
+        }
+        
+        .contact-content {
+            display: flex;
+            justify-content: space-between;
+            gap: 50px;
+        }
+        
+        .contact-text {
+            flex: 1;
+        }
+        
+        .contact-heading {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .contact-description {
+            color: #6B7280;
+            margin-bottom: 30px;
+            max-width: 500px;
+        }
+        
+        .contact-details {
+            flex: 1;
+            background-color: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+        
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(79, 70, 229, 0.1);
+            border-radius: 50%;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+        
+        .contact-label {
+            font-weight: 500;
+            color: #6B7280;
+            margin-bottom: 5px;
+        }
+        
+        .contact-value {
+            font-weight: 600;
+        }
+        
+        .contact-social {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .social-link {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(79, 70, 229, 0.1);
+            border-radius: 50%;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        
+        .social-link:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #1F2937;
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .footer-description {
+            max-width: 300px;
+            opacity: 0.8;
+            margin-bottom: 20px;
+        }
+        
+        .footer-heading {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.8);
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .hero-content {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+            
+            .hero-buttons {
+                justify-content: center;
+            }
+            
+            .hero-description {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .contact-content {
+                flex-direction: column;
+            }
+            
+            .contact-info {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .name-text {
+                font-size: 2.5rem;
+            }
+            
+            .title-text {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+    </head>
+    <body>
+        <!-- Header Section -->
+        <header>
+            <div class="container">
+                <nav>
+                    <div class="logo">gairickaha.com</div>
+                    <div class="nav-links">
+                        <a href="#home">Home</a>
+                        <a href="#services">Services</a>
+                        <a href="#projects">Projects</a>
+                        <a href="#contact">Contact</a>
+                    </div>
+                    <a href="mailto:gairicksaha@gmail.com"
+                        class="cta-button">Let's Talk</a>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1 class="hello-text">Hello, I'm</h1>
+                        <h1 class="name-text">Gairick Saha</h1>
+                        <h2 class="title-text">Flutter Developer based in
+                            India</h2>
+                        <p class="hero-description">
+                            With over 3 years of experience in Flutter
+                            development, I am a skilled professional with a
+                            passion for creating high-quality, user-friendly
+                            mobile applications. My expertise in Flutter's
+                            reactive programming and widget system has allowed
+                            me to create cross-platform apps for both iOS and
+                            Android platforms with ease.
+                        </p>
+                        <div class="hero-buttons">
+                            <a href="#contact" class="cta-button">Get in
+                                Touch</a>
+                            <a href="#projects" class="secondary-button">View
+                                All Works</a>
+                        </div>
+                    </div>
+                    <div class="hero-image">
+                        <img
+                            src="https://avatars.githubusercontent.com/u/42214082?v=4"
+                            alt="Gairick Saha" class="profile-image">
+                        <div class="shape-1"></div>
+                        <div class="shape-2"></div>
+                        <div class="shape-3"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section class="services" id="services">
+            <div class="container">
+                <h2 class="section-title">Services I Am Providing</h2>
+                <p class="service-subtitle">Leveraging my expertise in Flutter
+                    and mobile app development to deliver exceptional digital
+                    experiences that drive business success.</p>
+
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="devicon-flutter-plain colored"></i>
+                        </div>
+                        <h3 class="service-title">Flutter Development</h3>
+                        <p class="service-description">
+                            Building cross-platform mobile applications using
+                            Flutter framework with reactive programming, GetX,
+                            Bloc, Provider, and seamless integration of
+                            third-party libraries and APIs.
+                        </p>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <h3 class="service-title">Backend Development</h3>
+                        <p class="service-description">
+                            Creating robust backend solutions using NodeJS
+                            (ExpressJS, Strapi), Python (FastAPI, Django), and
+                            databases like MongoDB, MySQL, and PostgreSQL.
+                        </p>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-code-branch"></i>
+                        </div>
+                        <h3 class="service-title">CI/CD Integration</h3>
+                        <p class="service-description">
+                            Setting up continuous integration and deployment
+                            pipelines using GitHub and CodeMagic to streamline
+                            development workflows and ensure quality code
+                            delivery.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section class="projects" id="projects">
+            <div class="container">
+                <h2 class="section-title">My Client Projects</h2>
+
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <img src="/api/placeholder/400/300"
+                            alt="Paydo Business App" class="project-image">
+                        <div class="project-content">
+                            <h3 class="project-title">Paydo Business</h3>
+                            <p class="project-description">A business management
+                                app helping clients to manage their business or
+                                create new supply and service requests.</p>
+                            <div class="project-links">
+                                <a
+                                    href="https://apps.apple.com/us/app/paydo-business/id6449187525"
+                                    class="project-link" target="_blank">
+                                    <i class="fab fa-apple"></i> App Store
+                                </a>
+                                <a
+                                    href="https://play.google.com/store/apps/details?id=com.paydo.sellerapp&hl=en"
+                                    class="project-link" target="_blank">
+                                    <i class="fab fa-google-play"></i> Play
+                                    Store
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <img src="/api/placeholder/400/300" alt="Akasa Air App"
+                            class="project-image">
+                        <div class="project-content">
+                            <h3 class="project-title">Akasa Air</h3>
+                            <p class="project-description">An Android & iOS app
+                                for Akasa Airline's online ticket booking and
+                                checking system.</p>
+                            <div class="project-links">
+                                <a
+                                    href="https://apps.apple.com/in/app/akasa-air/id1629829548"
+                                    class="project-link" target="_blank">
+                                    <i class="fab fa-apple"></i> App Store
+                                </a>
+                                <a
+                                    href="https://play.google.com/store/apps/details?id=com.akasaair.ibe&hl=en_IN&gl=US"
+                                    class="project-link" target="_blank">
+                                    <i class="fab fa-google-play"></i> Play
+                                    Store
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <img src="/api/placeholder/400/300" alt="Cucumia App"
+                            class="project-image">
+                        <div class="project-content">
+                            <h3 class="project-title">Cucumia</h3>
+                            <p class="project-description">An app that helps
+                                identify products from nearby supermarkets at
+                                unbelievable prices for immediate needs.</p>
+                            <div class="project-links">
+                                <a
+                                    href="https://apps.apple.com/in/app/cucumia/id1612237253"
+                                    class="project-link" target="_blank">
+                                    <i class="fab fa-apple"></i> App Store
+                                </a>
+                                <a
+                                    href="https://play.google.com/store/apps/details?id=com.cucumia.customerapp&hl=en_IN&gl=US"
+                                    class="project-link" target="_blank">
+                                    <i class="fab fa-google-play"></i> Play
+                                    Store
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Open Source Section -->
+        <section class="services">
+            <div class="container">
+                <h2 class="section-title">Open Source Contributions</h2>
+
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3 class="service-title">Dev_essential</h3>
+                        <p class="service-description">
+                            A free Flutter package providing commonly used
+                            widgets, forms, buttons, navigation wrapper, custom
+                            animations, extensions, network client and more.
+                        </p>
+                        <a href="https://github.com/gairick-saha/dev_essentials"
+                            class="project-link" target="_blank"
+                            style="margin-top: 15px; display: inline-block;">
+                            <i class="fab fa-github"></i> View on GitHub
+                        </a>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-table"></i>
+                        </div>
+                        <h3 class="service-title">FlutterSpreadsheetUI</h3>
+                        <p class="service-description">
+                            A Flutter package providing an easy-to-use and
+                            flexible way to create spreadsheet-like tables in
+                            Flutter for complex data displays.
+                        </p>
+                        <a
+                            href="https://pub.dev/packages/flutter_spreadsheet_ui"
+                            class="project-link" target="_blank"
+                            style="margin-top: 15px; display: inline-block;">
+                            <i class="fas fa-cube"></i> View on Pub.dev
+                        </a>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-spinner"></i>
+                        </div>
+                        <h3 class="service-title">PROGRESS_LOADING_BUTTON</h3>
+                        <p class="service-description">
+                            A free open source Flutter package for Material Type
+                            Flutter Button with beautiful async loading
+                            indicators and customizable styles.
+                        </p>
+                        <a
+                            href="https://pub.dev/packages/progress_loading_button"
+                            class="project-link" target="_blank"
+                            style="margin-top: 15px; display: inline-block;">
+                            <i class="fas fa-cube"></i> View on Pub.dev
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="stats">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <h3>3+</h3>
+                        <p>Years Experience</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>15+</h3>
+                        <p>Projects Completed</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>4+</h3>
+                        <p>Open Source Packages</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact" id="contact">
+            <div class="container">
+                <div class="contact-content">
+                    <div class="contact-text">
+                        <h2 class="contact-heading">Have An Awesome Project
+                            Idea? Let's Discuss</h2>
+                        <p class="contact-description">
+                            Looking for a Flutter developer to bring your app
+                            idea to life? I'm here to help you create
+                            high-quality, user-friendly mobile applications that
+                            meet your business needs.
+                        </p>
+                        <a href="mailto:gairicksaha@gmail.com"
+                            class="cta-button">Get in Touch</a>
+                    </div>
+
+                    <div class="contact-details">
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <p class="contact-label">Email</p>
+                                    <p
+                                        class="contact-value">gairicksaha@gmail.com</p>
+                                </div>
+                            </div>
+
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div>
+                                    <p class="contact-label">Phone</p>
+                                    <p class="contact-value">+91 7003718069</p>
+                                </div>
+                            </div>
+
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <p class="contact-label">Location</p>
+                                    <p class="contact-value">Pune, Maharashtra,
+                                        India</p>
+                                </div>
+                            </div>
+
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-briefcase"></i>
+                                </div>
+                                <div>
+                                    <p class="contact-label">Freelance</p>
+                                    <p class="contact-value">Available</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="contact-social">
+                            <a href="mailto:gairicksaha@gmail.com"
+                                class="social-link">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                            <a
+                                href="https://www.linkedin.com/in/gairick-s-3a276993/"
+                                class="social-link" target="_blank">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="https://github.com/gairick-saha"
+                                class="social-link" target="_blank">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="tel:+917003718069" class="social-link">
+                                <i class="fas fa-phone"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer style="padding-top: 0px; border-top: none;">
+            <div class="container">
+                <div class="footer-bottom" style="border-top: none;">
+                    <p>© 2024 Gairick Saha. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>

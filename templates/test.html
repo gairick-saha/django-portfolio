@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Brand Icons Dropdown with Search</title>
+        <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            width: 300px;
+            position: relative;
+        }
+        
+        .dropdown-header {
+            padding: 15px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            user-select: none;
+        }
+        
+        .selected-option {
+            display: flex;
+            align-items: center;
+        }
+        
+        .selected-option i {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+        
+        .arrow {
+            border: solid #666;
+            border-width: 0 2px 2px 0;
+            display: inline-block;
+            padding: 3px;
+            transform: rotate(45deg);
+            transition: transform 0.3s;
+        }
+        
+        .arrow.up {
+            transform: rotate(-135deg);
+        }
+        
+        .dropdown-body {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 1px solid #ddd;
+            border-top: none;
+            border-radius: 0 0 5px 5px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s;
+            z-index: 100;
+        }
+        
+        .dropdown-body.open {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .search-container {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            position: sticky;
+            top: 0;
+            background: white;
+            z-index: 101;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .dropdown-item {
+            padding: 12px 15px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .dropdown-item:hover {
+            background-color: #f9f9f9;
+        }
+        
+        .dropdown-item i {
+            margin-right: 10px;
+            font-size: 20px;
+            width: 20px;
+            text-align: center;
+        }
+        
+        .dropdown-item.selected {
+            background-color: #f0f0f0;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .no-results {
+            padding: 15px;
+            text-align: center;
+            color: #666;
+            font-style: italic;
+        }
+    </style>
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="dropdown-header">
+                <div class="selected-option">
+                    <i class="fas fa-question-circle"></i>
+                    <span>Select a brand</span>
+                </div>
+                <div class="arrow"></div>
+            </div>
+            <div class="dropdown-body">
+                <div class="search-container">
+                    <input type="text" class="search-input"
+                        placeholder="Search brands...">
+                </div>
+                <div class="dropdown-items-container">
+                    <div class="dropdown-item" data-value="apple">
+                        <i class="fab fa-apple"></i>
+                        <span>Apple</span>
+                    </div>
+                    <div class="dropdown-item" data-value="google">
+                        <i class="fab fa-google"></i>
+                        <span>Google</span>
+                    </div>
+                    <div class="dropdown-item" data-value="amazon">
+                        <i class="fab fa-amazon"></i>
+                        <span>Amazon</span>
+                    </div>
+                    <div class="dropdown-item" data-value="microsoft">
+                        <i class="fab fa-microsoft"></i>
+                        <span>Microsoft</span>
+                    </div>
+                    <div class="dropdown-item" data-value="facebook">
+                        <i class="fab fa-facebook"></i>
+                        <span>Facebook</span>
+                    </div>
+                    <div class="dropdown-item" data-value="twitter">
+                        <i class="fab fa-twitter"></i>
+                        <span>Twitter</span>
+                    </div>
+                    <div class="dropdown-item" data-value="instagram">
+                        <i class="fab fa-instagram"></i>
+                        <span>Instagram</span>
+                    </div>
+                    <div class="dropdown-item" data-value="youtube">
+                        <i class="fab fa-youtube"></i>
+                        <span>YouTube</span>
+                    </div>
+                    <div class="dropdown-item" data-value="spotify">
+                        <i class="fab fa-spotify"></i>
+                        <span>Spotify</span>
+                    </div>
+                    <div class="dropdown-item" data-value="github">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </div>
+                    <div class="dropdown-item" data-value="twitch">
+                        <i class="fab fa-twitch"></i>
+                        <span>Twitch</span>
+                    </div>
+                    <div class="dropdown-item" data-value="linkedin">
+                        <i class="fab fa-linkedin"></i>
+                        <span>LinkedIn</span>
+                    </div>
+                    <div class="dropdown-item" data-value="reddit">
+                        <i class="fab fa-reddit"></i>
+                        <span>Reddit</span>
+                    </div>
+                    <div class="dropdown-item" data-value="tiktok">
+                        <i class="fab fa-tiktok"></i>
+                        <span>TikTok</span>
+                    </div>
+                    <div class="no-results hidden">No matching brands
+                        found</div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropdownHeader = document.querySelector('.dropdown-header');
+            const dropdownBody = document.querySelector('.dropdown-body');
+            const arrow = document.querySelector('.arrow');
+            const searchInput = document.querySelector('.search-input');
+            const dropdownItems = document.querySelectorAll('.dropdown-item');
+            const selectedOptionIcon = document.querySelector('.selected-option i');
+            const selectedOptionText = document.querySelector('.selected-option span');
+            const noResults = document.querySelector('.no-results');
+            
+            // Toggle dropdown
+            dropdownHeader.addEventListener('click', function() {
+                dropdownBody.classList.toggle('open');
+                arrow.classList.toggle('up');
+                
+                // Focus on search input when dropdown opens
+                if (dropdownBody.classList.contains('open')) {
+                    setTimeout(() => {
+                        searchInput.focus();
+                    }, 100);
+                }
+            });
+            
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!event.target.closest('.container')) {
+                    dropdownBody.classList.remove('open');
+                    arrow.classList.remove('up');
+                    // Clear search when closing
+                    searchInput.value = '';
+                    filterItems('');
+                }
+            });
+            
+            // Search functionality
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase().trim();
+                filterItems(searchTerm);
+            });
+            
+            // Filter dropdown items based on search
+            function filterItems(searchTerm) {
+                let hasVisibleItems = false;
+                
+                dropdownItems.forEach(item => {
+                    const text = item.querySelector('span').textContent.toLowerCase();
+                    if (text.includes(searchTerm)) {
+                        item.classList.remove('hidden');
+                        hasVisibleItems = true;
+                    } else {
+                        item.classList.add('hidden');
+                    }
+                });
+                
+                // Show or hide "No results" message
+                if (hasVisibleItems) {
+                    noResults.classList.add('hidden');
+                } else {
+                    noResults.classList.remove('hidden');
+                }
+            }
+            
+            // Select option
+            dropdownItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    // Remove selected class from all items
+                    dropdownItems.forEach(i => i.classList.remove('selected'));
+                    
+                    // Add selected class to clicked item
+                    this.classList.add('selected');
+                    
+                    // Update selected option display
+                    const icon = this.querySelector('i').className;
+                    const text = this.querySelector('span').textContent;
+                    
+                    selectedOptionIcon.className = icon;
+                    selectedOptionText.textContent = text;
+                    
+                    // Close dropdown
+                    dropdownBody.classList.remove('open');
+                    arrow.classList.remove('up');
+                    
+                    // Clear search when closing
+                    searchInput.value = '';
+                    filterItems('');
+                    
+                    // You can get the selected value
+                    const selectedValue = this.getAttribute('data-value');
+                    console.log('Selected brand:', selectedValue);
+                    
+                    // You could also trigger a custom event or callback here
+                });
+            });
+            
+            // Prevent closing dropdown when clicking on search input
+            searchInput.addEventListener('click', function(event) {
+                event.stopPropagation();
+            });
+        });
+    </script>
+    </body>
+</html>

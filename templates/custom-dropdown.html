@@ -1,0 +1,22 @@
+{{ form.logo.as_hidden }}
+
+<div class="searchable-dropdown" data-field-name="logo">
+    <div class="select-btn default-state">
+        <span>Choose logo</span>
+        <i class="fa-solid fa-caret-down"></i>
+    </div>
+    <div class="searchable-dropdown-content">
+        <div class="search">
+            <input type="text" placeholder="Search logo">
+        </div>
+        <ul class="dropdown-options">
+            {% for group in widget.optgroups %}
+            {% if group.1.0.label != "Select an icon" %}
+            <li value="{{ group.1.0.value }}" class="dropdown-item">
+                <p>{{ group.1.0.label }}</p>
+            </li>
+            {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+</div>
